@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <canvas 
+    width="800"
+    height="1000"
+    id="canvas"
+    style="background-color: black;"
+    >
+    </canvas>
+
+
+<script>
+    const canvas = document.getElementById("canvas");
+    const context =canvas.getContext("2d");
+
+
+    canvas.addEventListener("mousemove", (event)=>{
+        console.log(event.clientX, event.clientY);
+
+
+        context.clearRect(0,0,800,1000);
+        context.beginPath();
+        context.fillStyle="red";
+        context.arc(event.clientX,event.clientY,100,0,360);
+        context.fill();
+
+       
+    
+        context.beginPath();
+        context.fillStyle="white";
+        context.arc(event.clientX,event.clientY,80,0,360);
+        context.fill();
+
+
+        context.beginPath();
+        context.fillStyle="pink";
+        context.arc(event.clientX, event.clientY,60,0,360);
+        context.fill();
+    });
+
+   
+
+</script>
+</body>
+</html>
