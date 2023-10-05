@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Game Loop</title>
+  </head>
+  <body>
+    <canvas
+      id="canvas"
+      width="300"
+      height="300"
+      style="background-color: green"
+    ></canvas>
+    <script>
+      const canvas = document.getElementById("canvas");
+      const context = canvas.getContext("2d");
+      let x = 20;
+      let y = -20; // Start the ball above the canvas
+      let dropping = false;
+
+      canvas.addEventListener("click", (event) => {
+        // Set the ball's position to the click coordinates
+        x = event.clientX - canvas.getBoundingClientRect().left;
+        y = event.clientY - canvas.getBoundingClientRect().top;
+        
+        // Start dropping from the new position
+        if (!dropping) {
+          dropping = true;
+          animateBall();
+        }
+      });
+
+      function animateBall() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.beginPath();
+        context.fillStyle = "blue";
+        context.arc(x, y, 20, 0, 2 * Math.PI);
+        context.fill();
+
+        if (dropping && y < canvas.height - 20) {
+          y += 1;
+          requestAnimationFrame(animateBall);
+        } else {
+          dropping = false;
+        }
+      }
+    </script>
+  </body>
+</html>
